@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_1"
+        android:enabled="true"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_2"
+        android:enabled="true"
+        android:icon="@drawable/ic_view_list"
+        android:title="Medication"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_3"
+        android:enabled="true"
+        android:icon="@drawable/ic_playlist_add"
+        android:title="Profile"
+        app:showAsAction="always" />
+</menu>
