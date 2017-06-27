@@ -1,5 +1,6 @@
 package com.aliakbar.meditrack.activity;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -7,19 +8,23 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.aliakbar.meditrack.R;
+import com.aliakbar.meditrack.fragment.AddMedicineFragment;
 import com.aliakbar.meditrack.fragment.HomeFragment;
 import com.aliakbar.meditrack.fragment.MedicineListFragment;
+import com.aliakbar.meditrack.fragment.SosSettingsFragment;
 import com.aliakbar.meditrack.fragment.UserAccountFragment;
 import com.aliakbar.meditrack.utils.BaseActivity;
 import com.aliakbar.meditrack.utils.Utils;
 
-public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
     Fragment fragment;
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +67,11 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         int id = item.getItemId();
 
 
-       if (id == R.id.action_SOS) {
+        if (id == R.id.action_SOS) {
 
 
-           return true;
-       }
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -118,7 +123,34 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
 
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.home_fragment_container);
+
+        if (currentFragment instanceof HomeFragment) {
+            if (doubleBackToExitPressedOnce) {
+                this.finish();
+            } else {
+                this.doubleBackToExitPressedOnce = true;
+                Toast.makeText(this, "Press back to exit", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        doubleBackToExitPressedOnce = false;
+                    }
+                }, 2000);
+            }
+        }
+        if (currentFragment instanceof AddMedicineFragment) {
+            intentUserAccountFragment();
+        } else if (currentFragment instanceof SosSettingsFragment) {
+            intentUserAccountFragment();
+        } else if (currentFragment instanceof UserAccountFragment) {
+            intentHome();
+        } else if (currentFragment instanceof MedicineListFragment) {
+            intentHome();
+        } else if (!(currentFragment instanceof HomeFragment)) {
+            super.onBackPressed();
+        }
     }
+
 }

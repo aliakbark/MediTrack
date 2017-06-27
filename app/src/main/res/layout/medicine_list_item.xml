@@ -34,6 +34,7 @@
                     android:orientation="vertical">
 
                     <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/medicine_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="8dp"
@@ -54,11 +55,13 @@
                 android:padding="5dp">
 
                 <android.support.v7.widget.AppCompatImageView
+                    android:id="@+id/delete_medicine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingRight="8dp"
-                    android:src="@drawable/ic_delete" />
+                    android:src="@drawable/ic_delete"
+                    android:clickable="true"/>
 
 
             </LinearLayout>

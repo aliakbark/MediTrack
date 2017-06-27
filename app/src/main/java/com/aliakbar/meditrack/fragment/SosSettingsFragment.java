@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aliakbar.meditrack.R;
+import com.aliakbar.meditrack.utils.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SosSettingsFragment extends Fragment {
+public class SosSettingsFragment extends BaseFragment {
+    View rootView;
 
 
     public SosSettingsFragment() {
@@ -24,7 +26,9 @@ public class SosSettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sos_settings, container, false);
+        rootView = inflater.inflate(R.layout.fragment_sos_settings, container, false);
+
+        return rootView;
     }
 
 }

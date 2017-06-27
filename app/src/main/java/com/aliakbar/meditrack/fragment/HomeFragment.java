@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.aliakbar.meditrack.R;
+import com.aliakbar.meditrack.utils.BaseFragment;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
+
+    View rootView;
 
 
     public HomeFragment() {
@@ -24,7 +27,19 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_today_list, container, false);
+        rootView = inflater.inflate(R.layout.fragment_today_list, container, false);
+        initViews();
+        viewClickListeners();
+
+        return rootView;
+    }
+
+    private void initViews() {
+
+    }
+
+    private void viewClickListeners() {
+
     }
 
 }
