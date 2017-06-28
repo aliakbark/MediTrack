@@ -30,6 +30,7 @@ public class HomeFragment extends BaseFragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_today_list, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().show();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("MediTrack");
 
         initViews();
         viewClickListeners();
