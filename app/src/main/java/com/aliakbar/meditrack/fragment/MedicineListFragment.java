@@ -37,6 +37,7 @@ public class MedicineListFragment extends BaseFragment implements View.OnClickLi
     private ArrayList<MedicineList> medicineListArrayList = null;
 
     FirebaseDatabase database;
+    DatabaseReference mUserRef;
     DatabaseReference mMedListRef;
 
     String deviceID = "";
@@ -51,7 +52,7 @@ public class MedicineListFragment extends BaseFragment implements View.OnClickLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_medicine_list, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         deviceID = Utils.getDeviceId(getContext());
         initViews();
         viewClickListners();
@@ -73,24 +74,27 @@ public class MedicineListFragment extends BaseFragment implements View.OnClickLi
         if (TextUtils.isEmpty(deviceID)) {
             deviceID = Utils.getDeviceId(getContext());
         }
+//        mUserRef = database.getReference(Constants.USERS).child(deviceID).child(Constants.MEDICINES);
         mMedListRef = database.getReference(Constants.USERS).child(deviceID).child(Constants.MEDICINES);
+
 
         mMedListRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 medicineListArrayList = new ArrayList<MedicineList>();
 
-                for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()) {
                     MedicineList medicineList = new MedicineList();
                     medicineList.setMedicine_name(childDataSnapshot.child(Constants.MEDICINE_NAME).getValue().toString());
-                    medicineList.setMedicine_name(childDataSnapshot.child(Constants.DOSAGE).getValue().toString());
-                    medicineList.setMedicine_name(childDataSnapshot.child(Constants.QUANTITY).getValue().toString());
-                    medicineList.setMedicine_name(childDataSnapshot.child(Constants.NO_OF_DOSE_PER_DAY).getValue().toString());
-                    medicineList.setMedicine_name(childDataSnapshot.child(Constants.NO_OF_MEDICINES_PURCHASED).getValue().toString());
+                    medicineList.setDosage(childDataSnapshot.child(Constants.DOSAGE).getValue().toString());
+                    medicineList.setQuantity(childDataSnapshot.child(Constants.QUANTITY).getValue().toString());
+                    medicineList.setNo_of_dose_per_day(childDataSnapshot.child(Constants.NO_OF_DOSE_PER_DAY).getValue().toString());
+                    medicineList.setNo_of_medicines_purchased(childDataSnapshot.child(Constants.NO_OF_MEDICINES_PURCHASED).getValue().toString());
                     medicineListArrayList.add(medicineList);
                 }
-                medicineListAdapter.notifyDataSetChanged();
                 medicineListAdapter.setUpdatedMedList(medicineListArrayList);
+
+                medicineListAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -103,7 +107,7 @@ public class MedicineListFragment extends BaseFragment implements View.OnClickLi
 
     private void viewClickListners() {
 
-        if (medicineListAdapter != null){
+        if (medicineListAdapter != null) {
 
         }
 
@@ -112,7 +116,6 @@ public class MedicineListFragment extends BaseFragment implements View.OnClickLi
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
     }
 
     @Override

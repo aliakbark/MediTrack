@@ -12,15 +12,16 @@ public class MedicineList {
     public String no_of_dose_per_day;
     public String no_of_medicines_purchased;
 
-    public MedicineList() {
-    }
-
     public MedicineList(String medicine_name, String dosage, String quantity, String no_of_dose_per_day, String no_of_medicines_purchased) {
         this.medicine_name = medicine_name;
         this.dosage = dosage;
         this.quantity = quantity;
         this.no_of_dose_per_day = no_of_dose_per_day;
         this.no_of_medicines_purchased = no_of_medicines_purchased;
+    }
+
+    public MedicineList() {
+
     }
 
     public String getMedicine_name() {
