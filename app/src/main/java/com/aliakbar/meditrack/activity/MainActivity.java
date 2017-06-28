@@ -68,9 +68,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
 
         if (id == R.id.action_SOS) {
+            intentSosFragment();
 
-
-            return true;
+//            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -99,7 +99,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                 .replace(R.id.home_fragment_container, fragment, Utils.getTagForFragment(fragment))
-                .addToBackStack(fragment.getTag())
                 .commit();
     }
 
@@ -108,7 +107,6 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                 .replace(R.id.home_fragment_container, fragment, Utils.getTagForFragment(fragment))
-                .addToBackStack(fragment.getTag())
                 .commit();
     }
 
@@ -117,7 +115,14 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
                 .replace(R.id.home_fragment_container, fragment, Utils.getTagForFragment(fragment))
-                .addToBackStack(fragment.getTag())
+                .commit();
+    }
+
+    private void intentSosFragment() {
+        fragment = new SosSettingsFragment();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                .replace(R.id.home_fragment_container, fragment, Utils.getTagForFragment(fragment))
                 .commit();
     }
 

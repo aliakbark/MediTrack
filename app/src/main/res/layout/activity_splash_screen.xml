@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@color/colorPrimary"
     tools:context="com.aliakbar.meditrack.activity.SplashScreenActivity">
 
     <android.support.v7.widget.AppCompatTextView
@@ -12,6 +13,8 @@
         android:layout_height="wrap_content"
         android:text="MediTrack"
         android:textStyle="bold"
-        android:textSize="20sp"/>
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:shadowColor="#000"/>
 
 </RelativeLayout>
