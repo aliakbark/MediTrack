@@ -9,7 +9,8 @@ import com.aliakbar.meditrack.utils.AppPreference;
  */
 
 public class ObjectFactory {
-
+    public static final String BROADCAST_RESPONSE = "BROADCAST_RESPONSE";
+    public static final String BROADCAST_RESPONSE_STATUS = "BROADCAST_RESPONSE_STATUS";
     private static ObjectFactory instance = null;
     private static AppPreference appPreference = null;
 

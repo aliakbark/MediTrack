@@ -17,4 +17,8 @@ public class Constants {
     public static final String NO_OF_DOSE_PER_DAY = "no_of_dose_per_day";
     public static final String NO_OF_MEDICINES_PURCHASED = "no_of_medicines_purchased";
 
+    public static final String SOS = "sos";
+    public static final String SOS_NAME = "sos_name";
+    public static final String SOS_PHONE = "sos_phone";
+
 }

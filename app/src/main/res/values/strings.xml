@@ -11,4 +11,5 @@
     <string name="no_of_dose_per_day">No.of dose per day</string>
     <string name="no_of_medicines_purchased">No.of medicines purchased</string>
     <string name="quantity">Quantity</string>
+    <string name="empty_list_message">No records found, Please add medicines.</string>
 </resources>

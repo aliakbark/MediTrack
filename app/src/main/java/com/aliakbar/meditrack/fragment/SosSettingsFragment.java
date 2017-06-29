@@ -5,12 +5,23 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.aliakbar.meditrack.R;
 import com.aliakbar.meditrack.utils.BaseFragment;
+import com.aliakbar.meditrack.utils.Constants;
+import com.aliakbar.meditrack.utils.Utils;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,10 +48,12 @@ public class SosSettingsFragment extends BaseFragment implements View.OnClickLis
 
     private void initViews() {
         btn_sos_update = (AppCompatButton) rootView.findViewById(R.id.btn_sos_update);
+
     }
 
     private void viewClickListeners() {
         btn_sos_update.setOnClickListener(this);
+
     }
 
     @Override
@@ -52,4 +65,5 @@ public class SosSettingsFragment extends BaseFragment implements View.OnClickLis
                 break;
         }
     }
+    
 }

@@ -1,13 +1,19 @@
 package com.aliakbar.meditrack.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.aliakbar.meditrack.R;
@@ -16,6 +22,7 @@ import com.aliakbar.meditrack.fragment.HomeFragment;
 import com.aliakbar.meditrack.fragment.MedicineListFragment;
 import com.aliakbar.meditrack.fragment.SosSettingsFragment;
 import com.aliakbar.meditrack.fragment.UserAccountFragment;
+import com.aliakbar.meditrack.manager.ObjectFactory;
 import com.aliakbar.meditrack.utils.BaseActivity;
 import com.aliakbar.meditrack.utils.Utils;
 
@@ -23,13 +30,43 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
+    SearchView search_view_medicines;
     Fragment fragment;
     boolean doubleBackToExitPressedOnce = false;
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().matches(ObjectFactory.BROADCAST_RESPONSE)) {
+                if (intent.getBooleanExtra(ObjectFactory.BROADCAST_RESPONSE_STATUS, false)) {
+                    showSearchBar();
+                } else {
+                    hideSearchBar();
+                }
+            }
+        }
+
+
+    };
+
+    private void hideSearchBar() {
+        search_view_medicines.setVisibility(View.GONE);
+
+    }
+
+    private void showSearchBar() {
+        search_view_medicines.setVisibility(View.VISIBLE);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        IntentFilter intent = new IntentFilter();
+        intent.addAction(ObjectFactory.BROADCAST_RESPONSE);
+        setBroadcastReceiver(broadcastReceiver, intent);
+
         initViews();
         viewClickListeners();
 
@@ -41,6 +78,12 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private void initViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar_home);
+        search_view_medicines = (SearchView) findViewById(R.id.search_view_medicines);
+        search_view_medicines.setActivated(true);
+        search_view_medicines.setQueryHint("Type medicine name here");
+        search_view_medicines.onActionViewExpanded();
+        search_view_medicines.setIconified(false);
+        search_view_medicines.clearFocus();
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
     }

@@ -1,14 +1,17 @@
 package com.aliakbar.meditrack.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.aliakbar.meditrack.R;
+import com.aliakbar.meditrack.manager.ObjectFactory;
 import com.aliakbar.meditrack.utils.BaseFragment;
 
 /**
@@ -29,7 +32,6 @@ public class HomeFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_today_list, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("MediTrack");
 
         initViews();
@@ -39,7 +41,9 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initViews() {
-
+        Intent intentRes = new Intent(ObjectFactory.BROADCAST_RESPONSE);
+        intentRes.putExtra(ObjectFactory.BROADCAST_RESPONSE_STATUS, false );
+        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intentRes);
     }
 
     private void viewClickListeners() {

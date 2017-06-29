@@ -2,9 +2,11 @@ package com.aliakbar.meditrack.fragment;
 
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.AppCompatImageView;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.aliakbar.meditrack.R;
+import com.aliakbar.meditrack.manager.ObjectFactory;
 import com.aliakbar.meditrack.utils.BaseFragment;
 import com.aliakbar.meditrack.utils.Constants;
 import com.aliakbar.meditrack.utils.Utils;
@@ -58,7 +61,6 @@ public class UserAccountFragment extends BaseFragment implements View.OnClickLis
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_user_account, container, false);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("");
         initViews();
         viewClickListeners();
@@ -68,7 +70,9 @@ public class UserAccountFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void initViews() {
-
+        Intent intentRes = new Intent(ObjectFactory.BROADCAST_RESPONSE);
+        intentRes.putExtra(ObjectFactory.BROADCAST_RESPONSE_STATUS, false);
+        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intentRes);
         deviceID = Utils.getDeviceId(getContext());
 
         firebaseDatabase = FirebaseDatabase.getInstance();

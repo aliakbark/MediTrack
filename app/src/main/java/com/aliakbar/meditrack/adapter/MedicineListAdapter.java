@@ -20,6 +20,8 @@ import java.util.List;
 
 public class MedicineListAdapter extends RecyclerView.Adapter<MedicineListAdapter.DataObjectHolder> {
 
+    private static MedicineListAdapter.MyClickListener myClickListener;
+
     ArrayList<MedicineList> medicineLists;
     public Context context;
 
@@ -52,7 +54,7 @@ public class MedicineListAdapter extends RecyclerView.Adapter<MedicineListAdapte
         return medicineLists.size();
     }
 
-    public class DataObjectHolder extends RecyclerView.ViewHolder {
+    public class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public AppCompatTextView medicine_name;
         public AppCompatImageView delete_medicine;
@@ -62,7 +64,24 @@ public class MedicineListAdapter extends RecyclerView.Adapter<MedicineListAdapte
 
             medicine_name = (AppCompatTextView) itemView.findViewById(R.id.medicine_name);
             delete_medicine = (AppCompatImageView) itemView.findViewById(R.id.delete_medicine);
+
+            delete_medicine.setOnClickListener(this       );
         }
+
+        @Override
+        public void onClick(View v) {
+
+            myClickListener.onItemClick(getAdapterPosition(), v);
+
+        }
+    }
+
+    public interface MyClickListener {
+        public void onItemClick(int position, View v);
+    }
+
+    public void setOnItemClickListener(MedicineListAdapter.MyClickListener myClickListener) {
+        this.myClickListener = myClickListener;
     }
 
     public void setUpdatedMedList(ArrayList<MedicineList> list) {

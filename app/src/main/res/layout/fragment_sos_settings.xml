@@ -6,6 +6,8 @@
     android:orientation="vertical"
     tools:context="com.aliakbar.meditrack.fragment.SosSettingsFragment">
 
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +28,7 @@
                 android:textSize="16sp" />
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/user_name"
+                android:id="@+id/sos_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -47,24 +49,51 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="Age     : "
+                android:text="Phone : "
                 android:textSize="16sp" />
 
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/user_age"
+                android:id="@+id/sos_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:inputType="number"
+                android:inputType="phone"
                 android:maxLines="1"
                 android:text="24"
                 android:textColor="#0a0a0a" />
         </LinearLayout>
 
 
-    </LinearLayout>
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/edit_profile_sos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:src="@drawable/ic_edit" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/edit_profile_done_sos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="@string/action_done"
+            android:textColor="#282e96"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_sos_update"
         android:layout_width="match_parent"
